@@ -28,38 +28,45 @@ import com.ipa.dev.gamethrones.listOfCharacters
 import com.ipa.dev.gamethrones.ui.theme.GameThronesTheme
 
 @Composable
-@OptIn(ExperimentalMaterial3Api::class)
-fun HomeScreen() {
+fun ScreenTheme(content: @Composable () -> Unit) {
     GameThronesTheme {
         Surface(
             modifier = Modifier.fillMaxSize(),
-            color = MaterialTheme.colorScheme.background
-        ) {
-            val scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior()
-            Scaffold(
-                topBar = {
-                    TopAppBar(
-                        title = { Text("GameThrones") },
-                        scrollBehavior = scrollBehavior
-                    )
-                },
-                modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection)
-            ) { padding ->
-                LazyVerticalGrid(
-                    columns = GridCells.Adaptive(150.dp),
-                    horizontalArrangement = Arrangement.spacedBy(4.dp),
-                    verticalArrangement = Arrangement.spacedBy(4.dp),
-                    modifier = Modifier.padding(horizontal = 4.dp),
-                    contentPadding = padding
-                ) {
-                    items(listOfCharacters) { character ->
-                        CharacterItem(character = character)
-                    }
+            color = MaterialTheme.colorScheme.background,
+            content = content
+        )
+    }
+}
+
+@Composable
+@OptIn(ExperimentalMaterial3Api::class)
+fun HomeScreen() {
+    ScreenTheme {
+        val scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior()
+        Scaffold(
+            topBar = {
+                TopAppBar(
+                    title = { Text("GameThrones") },
+                    scrollBehavior = scrollBehavior
+                )
+            },
+            modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection)
+        ) { padding ->
+            LazyVerticalGrid(
+                columns = GridCells.Adaptive(150.dp),
+                horizontalArrangement = Arrangement.spacedBy(4.dp),
+                verticalArrangement = Arrangement.spacedBy(4.dp),
+                modifier = Modifier.padding(horizontal = 4.dp),
+                contentPadding = padding
+            ) {
+                items(listOfCharacters) { character ->
+                    CharacterItem(character = character)
                 }
             }
         }
     }
 }
+
 
 @Composable
 fun CharacterItem(
@@ -71,7 +78,7 @@ fun CharacterItem(
             contentDescription = character.fullName,
             modifier = Modifier
                 .fillMaxWidth()
-                .aspectRatio(2/3f)
+                .aspectRatio(2 / 3f)
                 .clip(MaterialTheme.shapes.small)
         )
         Text(
@@ -85,6 +92,8 @@ fun CharacterItem(
 
 @Preview
 @Composable
-fun CharacterItemPreview() {
-    HomeScreen()
+fun HomeScreen_Preview() {
+    ScreenTheme {
+        HomeScreen()
+    }
 }
