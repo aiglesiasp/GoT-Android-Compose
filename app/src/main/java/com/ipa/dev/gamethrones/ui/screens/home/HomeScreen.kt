@@ -23,6 +23,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import coil.compose.AsyncImage
 import com.ipa.dev.gamethrones.CharacterModel
 import com.ipa.dev.gamethrones.listOfCharacters
@@ -42,6 +43,7 @@ fun ScreenTheme(content: @Composable () -> Unit) {
 @Composable
 @OptIn(ExperimentalMaterial3Api::class)
 fun HomeScreen(
+    vm: HomeViewModel = viewModel(),
     onClick: (CharacterModel) -> Unit
 ) {
     ScreenTheme {
