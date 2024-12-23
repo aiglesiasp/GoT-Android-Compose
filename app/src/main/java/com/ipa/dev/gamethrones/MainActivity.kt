@@ -23,17 +23,20 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import coil.compose.AsyncImage
 
 import com.ipa.dev.gamethrones.ui.theme.GameThronesTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
+        //enableEdgeToEdge()
         setContent {
             GameThronesTheme {
-                Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background)
-                {
+                Surface(
+                    modifier = Modifier.fillMaxSize(),
+                    color = MaterialTheme.colorScheme.background
+                ) {
                     LazyVerticalGrid(
                         columns = GridCells.Adaptive(150.dp),
                         horizontalArrangement = Arrangement.spacedBy(4.dp),
@@ -55,7 +58,9 @@ fun CharacterItem(
     character: CharacterModel,
 ) {
     Column {
-        Box(
+        AsyncImage(
+            model = character.imageUrl,
+            contentDescription = character.fullName,
             modifier = Modifier
                 .fillMaxWidth()
                 .aspectRatio(2/3f)
