@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">GameThrones</string>
+    <string name="back">Go Back</string>
 </resources>
