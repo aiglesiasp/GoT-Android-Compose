@@ -1,13 +1,20 @@
 package com.ipa.dev.gamethrones.data
 
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.withContext
-
 class CharactersRepository {
 
-    suspend fun getCharacters(): List<CharacterModel> = withContext(Dispatchers.IO) {
-        delay(2000)
-        listOfCharacters
+    suspend fun getCharacters(): List<CharacterModel>  {
+        val remoteCharacters = ApiClient.instance.getCharacters()
+        return remoteCharacters.map { it.toDomainModel() }
     }
+    }
+
+
+private fun CharacterRemoteResult.toDomainModel() : CharacterModel {
+    return CharacterModel(
+        id = id,
+        fullName = if (fullName.isNullOrBlank()) "" else fullName,
+        title = if (title.isNullOrBlank()) "" else title,
+        family = if (family.isNullOrBlank()) "" else family,
+        imageUrl = if (imageUrl.isNullOrBlank()) "" else imageUrl
+    )
 }
