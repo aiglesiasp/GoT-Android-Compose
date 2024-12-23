@@ -5,8 +5,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.ipa.dev.gamethrones.CharacterModel
-import com.ipa.dev.gamethrones.listOfCharacters
+import com.ipa.dev.gamethrones.data.CharacterModel
+import com.ipa.dev.gamethrones.data.listOfCharacters
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 

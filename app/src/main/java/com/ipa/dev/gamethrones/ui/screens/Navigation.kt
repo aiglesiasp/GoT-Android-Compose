@@ -6,7 +6,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import com.ipa.dev.gamethrones.listOfCharacters
+import com.ipa.dev.gamethrones.data.listOfCharacters
 import com.ipa.dev.gamethrones.ui.screens.detail.DetailScreen
 import com.ipa.dev.gamethrones.ui.screens.home.HomeScreen
 

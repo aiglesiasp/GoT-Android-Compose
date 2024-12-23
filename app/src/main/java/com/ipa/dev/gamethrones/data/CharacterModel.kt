@@ -1,4 +1,4 @@
-package com.ipa.dev.gamethrones
+package com.ipa.dev.gamethrones.data
 
 data class CharacterModel (
     val id: Int,

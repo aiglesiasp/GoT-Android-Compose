@@ -28,8 +28,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import coil.compose.AsyncImage
-import com.ipa.dev.gamethrones.CharacterModel
-import com.ipa.dev.gamethrones.listOfCharacters
+import com.ipa.dev.gamethrones.data.CharacterModel
 import com.ipa.dev.gamethrones.ui.theme.GameThronesTheme
 
 @Composable
