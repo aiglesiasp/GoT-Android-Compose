@@ -6,14 +6,15 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ipa.dev.gamethrones.data.CharacterModel
-import com.ipa.dev.gamethrones.data.listOfCharacters
-import kotlinx.coroutines.delay
+import com.ipa.dev.gamethrones.data.CharactersRepository
 import kotlinx.coroutines.launch
 
 class HomeViewModel : ViewModel() {
 
     var uiState by mutableStateOf(UiState())
         private set
+
+    private val repository = CharactersRepository()
 
     data class UiState(
         val isLoading: Boolean = false,
@@ -23,9 +24,7 @@ class HomeViewModel : ViewModel() {
     fun onUiReady() {
         viewModelScope.launch {
             uiState = UiState(isLoading = true)
-            delay(2000)
-            uiState = UiState(isLoading = false, characters = listOfCharacters)
-
+            uiState = UiState(isLoading = false, characters = repository.getCharacters())
         }
     }
 }
