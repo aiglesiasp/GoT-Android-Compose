@@ -22,14 +22,14 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
+import com.ipa.dev.gamethrones.CharacterModel
 import com.ipa.dev.gamethrones.R
 import com.ipa.dev.gamethrones.listOfCharacters
 import com.ipa.dev.gamethrones.ui.screens.home.ScreenTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun DetailScreen() {
-    val character = listOfCharacters[0]
+fun DetailScreen(character: CharacterModel) {
     ScreenTheme {
         Scaffold(
             topBar = {
@@ -82,5 +82,6 @@ fun DetailScreen() {
 @Preview
 @Composable
 private fun DetailScreen_Preview() {
-    DetailScreen()
+    val character = listOfCharacters[0]
+    DetailScreen(character = character)
 }
