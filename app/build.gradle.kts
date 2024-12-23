@@ -6,7 +6,7 @@ plugins {
 
 android {
     namespace = "com.ipa.dev.gamethrones"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.ipa.dev.gamethrones"
