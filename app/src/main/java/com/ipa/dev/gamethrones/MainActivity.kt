@@ -30,7 +30,10 @@ class MainActivity : ComponentActivity() {
                     arguments = listOf(navArgument("characterId") { type = NavType.IntType })
                 ) { navBackStackEntry ->
                     val characterId = navBackStackEntry.arguments?.getInt("characterId")
-                    DetailScreen(character = listOfCharacters.first { it.id == characterId })
+                    DetailScreen(
+                        character = listOfCharacters.first { it.id == characterId },
+                        onBackClick = { navController.popBackStack() }
+                    )
                 }
             }
 

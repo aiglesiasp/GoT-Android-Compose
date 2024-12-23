@@ -29,14 +29,17 @@ import com.ipa.dev.gamethrones.ui.screens.home.ScreenTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun DetailScreen(character: CharacterModel) {
+fun DetailScreen(
+    character: CharacterModel,
+    onBackClick: () -> Unit
+) {
     ScreenTheme {
         Scaffold(
             topBar = {
                 TopAppBar(
                     title = { Text(character.fullName) },
                     navigationIcon = {
-                        IconButton(onClick = { /*TODO*/ }) {
+                        IconButton(onClick = onBackClick) {
                             Icon(
                                 imageVector = Icons.AutoMirrored.Default.ArrowBack,
                                 contentDescription = stringResource(R.string.back)
@@ -83,5 +86,8 @@ fun DetailScreen(character: CharacterModel) {
 @Composable
 private fun DetailScreen_Preview() {
     val character = listOfCharacters[0]
-    DetailScreen(character = character)
+    DetailScreen(
+        character = character,
+        onBackClick = {}
+    )
 }
