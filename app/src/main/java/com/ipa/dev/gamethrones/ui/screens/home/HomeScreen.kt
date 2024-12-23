@@ -1,5 +1,6 @@
 package com.ipa.dev.gamethrones.ui.screens.home
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.aspectRatio
@@ -40,7 +41,9 @@ fun ScreenTheme(content: @Composable () -> Unit) {
 
 @Composable
 @OptIn(ExperimentalMaterial3Api::class)
-fun HomeScreen() {
+fun HomeScreen(
+    onClick: (CharacterModel) -> Unit
+) {
     ScreenTheme {
         val scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior()
         Scaffold(
@@ -60,7 +63,10 @@ fun HomeScreen() {
                 contentPadding = padding
             ) {
                 items(listOfCharacters) { character ->
-                    CharacterItem(character = character)
+                    CharacterItem(
+                        character = character,
+                        onClick = { onClick(character) }
+                    )
                 }
             }
         }
@@ -71,8 +77,11 @@ fun HomeScreen() {
 @Composable
 fun CharacterItem(
     character: CharacterModel,
+    onClick: () -> Unit
 ) {
-    Column {
+    Column(
+        modifier = Modifier.clickable(onClick = onClick)
+    ) {
         AsyncImage(
             model = character.imageUrl,
             contentDescription = character.fullName,
@@ -94,6 +103,8 @@ fun CharacterItem(
 @Composable
 fun HomeScreen_Preview() {
     ScreenTheme {
-        HomeScreen()
+        HomeScreen(
+            onClick = {}
+        )
     }
 }
