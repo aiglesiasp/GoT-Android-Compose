@@ -28,8 +28,9 @@ class MainActivity : ComponentActivity() {
                 composable(
                     route = "detail/{characterId}",
                     arguments = listOf(navArgument("characterId") { type = NavType.IntType })
-                ) {
-                    DetailScreen()
+                ) { navBackStackEntry ->
+                    val characterId = navBackStackEntry.arguments?.getInt("characterId")
+                    DetailScreen(character = listOfCharacters.first { it.id == characterId })
                 }
             }
 
