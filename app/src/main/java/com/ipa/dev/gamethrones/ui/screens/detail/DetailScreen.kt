@@ -23,9 +23,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import coil.compose.AsyncImage
-import com.ipa.dev.gamethrones.data.CharacterModel
 import com.ipa.dev.gamethrones.R
-import com.ipa.dev.gamethrones.data.listOfCharacters
 import com.ipa.dev.gamethrones.ui.screens.home.ScreenTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -34,11 +32,13 @@ fun DetailScreen(
     vm: DetailViewModel = viewModel(),
     onBackClick: () -> Unit
 ) {
+    val state = vm.state
+
     ScreenTheme {
         Scaffold(
             topBar = {
                 TopAppBar(
-                    title = { Text(character.fullName) },
+                    title = { Text(state.character?.fullName ?: "") },
                     navigationIcon = {
                         IconButton(onClick = onBackClick) {
                             Icon(
@@ -56,25 +56,25 @@ fun DetailScreen(
                     .verticalScroll(rememberScrollState())
             ) {
                 AsyncImage(
-                    model = character.imageUrl,
-                    contentDescription = character.fullName,
+                    model = state.character?.imageUrl,
+                    contentDescription = state.character?.fullName,
                     contentScale = ContentScale.Crop,
                     modifier = Modifier
                         .fillMaxWidth()
                         .aspectRatio(16 / 9f)
                 )
                 Text(
-                    text = character.fullName,
+                    text = state.character?.fullName ?: "",
                     modifier = Modifier.padding(16.dp),
                     style = MaterialTheme.typography.headlineLarge
                 )
                 Text(
-                    text = character.title,
+                    text = state.character?.title ?: "",
                     modifier = Modifier.padding(16.dp),
                     style = MaterialTheme.typography.headlineMedium
                 )
                 Text(
-                    text = character.family,
+                    text = state.character?.family ?: "",
                     modifier = Modifier.padding(16.dp),
                     style = MaterialTheme.typography.headlineMedium
                 )
@@ -86,9 +86,7 @@ fun DetailScreen(
 @Preview
 @Composable
 private fun DetailScreen_Preview() {
-    val character = listOfCharacters[0]
     DetailScreen(
-        character = character,
         onBackClick = {}
     )
 }
