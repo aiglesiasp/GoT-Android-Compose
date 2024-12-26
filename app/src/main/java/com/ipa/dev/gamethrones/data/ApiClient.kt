@@ -1,11 +1,9 @@
 package com.ipa.dev.gamethrones.data
 
-import android.util.JsonToken
 import kotlinx.serialization.json.Json
 import okhttp3.Interceptor
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
-import org.json.JSONObject
 import retrofit2.Retrofit
 import retrofit2.converter.kotlinx.serialization.asConverterFactory
 import retrofit2.create

@@ -28,6 +28,4 @@ class DetailViewModel(private val id: Int) : ViewModel() {
 
         }
     }
-
-
 }
