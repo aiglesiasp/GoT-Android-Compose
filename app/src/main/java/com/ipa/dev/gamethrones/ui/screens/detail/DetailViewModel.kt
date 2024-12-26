@@ -9,7 +9,7 @@ import com.ipa.dev.gamethrones.data.CharacterModel
 import com.ipa.dev.gamethrones.data.CharactersRepository
 import kotlinx.coroutines.launch
 
-class DetailViewModel : ViewModel() {
+class DetailViewModel(private val id: Int) : ViewModel() {
 
     private val repository = CharactersRepository()
 
