@@ -6,8 +6,12 @@ class CharactersRepository {
         val remoteCharacters = ApiClient.instance.getCharacters()
         return remoteCharacters.map { it.toDomainModel() }
     }
-}
 
+    suspend fun getCharacter(id: Int): CharacterModel {
+        val remoteCharacter = ApiClient.instance.getCharacter(id)
+        return remoteCharacter.toDomainModel()
+    }
+}
 
 private fun CharacterRemoteResult.toDomainModel(): CharacterModel {
     return CharacterModel(
