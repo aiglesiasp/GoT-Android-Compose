@@ -6,9 +6,11 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.toRoute
+import com.ipa.dev.gamethrones.data.CharactersRepository
 import com.ipa.dev.gamethrones.ui.screens.detail.DetailScreen
 import com.ipa.dev.gamethrones.ui.screens.detail.DetailViewModel
 import com.ipa.dev.gamethrones.ui.screens.home.HomeScreen
+import com.ipa.dev.gamethrones.ui.screens.home.HomeViewModel
 
 @Composable
 fun Navigation() {
@@ -19,7 +21,9 @@ fun Navigation() {
     ) {
 
         composable<Home> {
-            HomeScreen(onClick = { character ->
+            HomeScreen(
+                vm = viewModel { HomeViewModel(CharactersRepository()) } ,
+                onClick = { character ->
                 navController.navigate(Detail(character.id))
             })
         }
@@ -28,7 +32,7 @@ fun Navigation() {
         ) { navBackStackEntry ->
             val detail = navBackStackEntry.toRoute<Detail>()
             DetailScreen(
-                vm = viewModel { DetailViewModel(detail.characterId) },
+                vm = viewModel { DetailViewModel(detail.characterId, CharactersRepository()) },
                 onBackClick = { navController.popBackStack(route = Home, inclusive = false) },
             )
         }
