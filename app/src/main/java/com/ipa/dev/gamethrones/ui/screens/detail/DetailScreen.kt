@@ -16,6 +16,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarScrollBehavior
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -31,16 +32,24 @@ import com.ipa.dev.gamethrones.data.CharacterModel
 import com.ipa.dev.gamethrones.ui.commonViews.LoadingProgressIndicator
 import com.ipa.dev.gamethrones.ui.screens.home.ScreenTheme
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun DetailScreen(
     vm: DetailViewModel = viewModel(),
     onBackClick: () -> Unit
 ) {
     val state by vm.state.collectAsState()
+    val detailState = rememberDetailState()
 
     ScreenTheme {
         Scaffold(
-            topBar = { DetailTopBar(state.character?.fullName ?: "", onBackClick) }
+            topBar = {
+                DetailTopBar(
+                    title = state.character?.fullName ?: "",
+                    scrollBehavior = detailState.scrollBehavior,
+                    onBackClick = onBackClick
+                )
+            }
         ) { padding ->
 
             if (state.isLoading) {
@@ -93,6 +102,7 @@ private fun DetailScreenContent(
 @OptIn(ExperimentalMaterial3Api::class)
 private fun DetailTopBar(
     title: String,
+    scrollBehavior: TopAppBarScrollBehavior,
     onBackClick: () -> Unit
 ) {
     TopAppBar(
@@ -104,7 +114,8 @@ private fun DetailTopBar(
                     contentDescription = stringResource(R.string.back)
                 )
             }
-        }
+        },
+        scrollBehavior = scrollBehavior
     )
 }
 
