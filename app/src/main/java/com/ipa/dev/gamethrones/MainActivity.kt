@@ -3,7 +3,7 @@ package com.ipa.dev.gamethrones
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import com.ipa.dev.gamethrones.ui.screens.Navigation
+import com.ipa.dev.gamethrones.ui.navigation.Navigation
 
 class MainActivity : ComponentActivity() {
 
