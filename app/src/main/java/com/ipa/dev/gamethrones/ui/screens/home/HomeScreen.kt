@@ -50,20 +50,19 @@ fun HomeScreen(
     onClick: (CharacterModel) -> Unit
 ) {
 
-    LaunchedEffect(Unit) {
-        vm.onUiReady()
-    }
+    val homeState = rememberHomeState()
+
+    homeState.onUiReady { vm.onUiReady() }
 
     ScreenTheme {
-        val scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior()
         Scaffold(
             topBar = {
                 TopAppBar(
                     title = { Text("GameThrones") },
-                    scrollBehavior = scrollBehavior
+                    scrollBehavior = homeState.scrollBehavior
                 )
             },
-            modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection)
+            modifier = Modifier.nestedScroll(homeState.scrollBehavior.nestedScrollConnection)
         ) { padding ->
 
             val state by vm.state.collectAsState()

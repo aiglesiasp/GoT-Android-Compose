@@ -1,0 +1,28 @@
+package com.ipa.dev.gamethrones.ui.screens.home
+
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.TopAppBarDefaults
+import androidx.compose.material3.TopAppBarScrollBehavior
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.remember
+
+@OptIn(ExperimentalMaterial3Api::class)
+class HomeState (
+    val scrollBehavior : TopAppBarScrollBehavior,
+) {
+    @Composable
+    fun onUiReady(ready: () -> Unit) {
+        LaunchedEffect(Unit) {
+            ready()
+        }
+    }
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun rememberHomeState(
+    scrollBehavior : TopAppBarScrollBehavior = TopAppBarDefaults.pinnedScrollBehavior()
+) : HomeState {
+    return remember(scrollBehavior) { HomeState(scrollBehavior) }
+}
