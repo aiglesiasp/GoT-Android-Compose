@@ -1,8 +1,5 @@
 package com.ipa.dev.gamethrones.ui.screens.detail
 
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ipa.dev.gamethrones.data.CharacterModel
@@ -12,9 +9,10 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
-class DetailViewModel(private val id: Int) : ViewModel() {
-
-    private val repository = CharactersRepository()
+class DetailViewModel(
+    private val id: Int,
+    private val repository: CharactersRepository
+) : ViewModel() {
 
     private val _state = MutableStateFlow(UiState())
     val state: StateFlow<UiState> get() = _state.asStateFlow()

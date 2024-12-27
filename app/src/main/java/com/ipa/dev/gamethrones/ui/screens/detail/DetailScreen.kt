@@ -25,7 +25,6 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.viewmodel.compose.viewModel
 import coil.compose.AsyncImage
 import com.ipa.dev.gamethrones.R
 import com.ipa.dev.gamethrones.data.CharacterModel
@@ -35,7 +34,7 @@ import com.ipa.dev.gamethrones.ui.screens.home.ScreenTheme
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun DetailScreen(
-    vm: DetailViewModel = viewModel(),
+    vm: DetailViewModel,
     onBackClick: () -> Unit
 ) {
     val state by vm.state.collectAsState()
