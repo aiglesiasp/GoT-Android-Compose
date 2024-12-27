@@ -29,7 +29,7 @@ fun Navigation() {
             val detail = navBackStackEntry.toRoute<Detail>()
             DetailScreen(
                 vm = viewModel { DetailViewModel(detail.characterId) },
-                onBackClick = { navController.popBackStack() },
+                onBackClick = { navController.popBackStack(route = Home, inclusive = false) },
             )
         }
     }
