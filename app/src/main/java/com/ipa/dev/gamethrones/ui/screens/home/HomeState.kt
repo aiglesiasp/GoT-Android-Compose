@@ -12,7 +12,7 @@ class HomeState (
     val scrollBehavior : TopAppBarScrollBehavior,
 ) {
     @Composable
-    fun onUiReady(ready: () -> Unit) {
+    fun onUiReadyEffect(ready: () -> Unit) {
         LaunchedEffect(Unit) {
             ready()
         }
