@@ -1,6 +1,6 @@
 package com.ipa.dev.gamethrones.data
 
-import com.ipa.dev.gamethrones.data.remotedatasource.CharacterRemoteDataSource
+import com.ipa.dev.gamethrones.data.remote.CharacterRemoteDataSource
 
 class CharactersRepository(
     private val remoteDataSource: CharacterRemoteDataSource

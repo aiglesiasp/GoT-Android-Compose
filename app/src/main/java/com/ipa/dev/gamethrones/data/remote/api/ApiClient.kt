@@ -1,4 +1,4 @@
-package com.ipa.dev.gamethrones.data
+package com.ipa.dev.gamethrones.data.remote.api
 
 import kotlinx.serialization.json.Json
 import okhttp3.Interceptor
@@ -25,7 +25,6 @@ object ApiClient {
         .build()
         .create<ApiService>()
 }
-
 
 //METODO PARA AGREGAR API KEY A CADA PETICION
 private fun apiKeyAsQuery(chain: Interceptor.Chain) = chain.proceed(

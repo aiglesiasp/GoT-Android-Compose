@@ -1,4 +1,4 @@
-package com.ipa.dev.gamethrones.data
+package com.ipa.dev.gamethrones.data.remote.model
 
 import kotlinx.serialization.Serializable
 

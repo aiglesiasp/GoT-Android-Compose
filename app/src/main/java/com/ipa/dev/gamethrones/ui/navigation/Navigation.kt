@@ -7,7 +7,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.toRoute
 import com.ipa.dev.gamethrones.data.CharactersRepository
-import com.ipa.dev.gamethrones.data.remotedatasource.CharacterRemoteDataSource
+import com.ipa.dev.gamethrones.data.remote.CharacterRemoteDataSource
 import com.ipa.dev.gamethrones.ui.screens.detail.DetailScreen
 import com.ipa.dev.gamethrones.ui.screens.detail.DetailViewModel
 import com.ipa.dev.gamethrones.ui.screens.home.HomeScreen

@@ -1,8 +1,8 @@
-package com.ipa.dev.gamethrones.data.remotedatasource
+package com.ipa.dev.gamethrones.data.remote
 
-import com.ipa.dev.gamethrones.data.ApiClient
 import com.ipa.dev.gamethrones.data.CharacterModel
-import com.ipa.dev.gamethrones.data.CharacterRemoteResult
+import com.ipa.dev.gamethrones.data.remote.api.ApiClient
+import com.ipa.dev.gamethrones.data.remote.model.CharacterRemoteResult
 
 class CharacterRemoteDataSource {
     suspend fun getCharacters(): List<CharacterModel> {

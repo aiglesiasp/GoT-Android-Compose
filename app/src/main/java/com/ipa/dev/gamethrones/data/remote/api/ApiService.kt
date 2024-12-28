@@ -1,5 +1,6 @@
-package com.ipa.dev.gamethrones.data
+package com.ipa.dev.gamethrones.data.remote.api
 
+import com.ipa.dev.gamethrones.data.remote.model.CharacterRemoteResult
 import retrofit2.http.GET
 import retrofit2.http.Path
 
