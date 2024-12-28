@@ -6,23 +6,9 @@ class CharactersRepository(
     private val remoteDataSource: CharacterRemoteDataSource
 ) {
 
-    suspend fun getCharacters(): List<CharacterModel> {
-        val remoteCharacters = remoteDataSource.getCharacters()
-        return remoteCharacters.map { it.toDomainModel() }
-    }
+    suspend fun getCharacters(): List<CharacterModel> = remoteDataSource.getCharacters()
 
-    suspend fun getCharacter(id: Int): CharacterModel {
-        val remoteCharacter = remoteDataSource.getCharacter(id)
-        return remoteCharacter.toDomainModel()
-    }
+    suspend fun getCharacter(id: Int): CharacterModel = remoteDataSource.getCharacter(id)
 }
 
-private fun CharacterRemoteResult.toDomainModel(): CharacterModel {
-    return CharacterModel(
-        id = id,
-        fullName = if (fullName.isNullOrBlank()) "" else fullName,
-        title = if (title.isNullOrBlank()) "" else title,
-        family = if (family.isNullOrBlank()) "" else family,
-        imageUrl = if (imageUrl.isNullOrBlank()) "" else imageUrl
-    )
-}
+
