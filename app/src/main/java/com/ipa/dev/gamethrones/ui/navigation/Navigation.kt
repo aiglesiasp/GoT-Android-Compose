@@ -7,6 +7,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.toRoute
 import com.ipa.dev.gamethrones.data.CharactersRepository
+import com.ipa.dev.gamethrones.data.remotedatasource.CharacterRemoteDataSource
 import com.ipa.dev.gamethrones.ui.screens.detail.DetailScreen
 import com.ipa.dev.gamethrones.ui.screens.detail.DetailViewModel
 import com.ipa.dev.gamethrones.ui.screens.home.HomeScreen
@@ -15,7 +16,9 @@ import com.ipa.dev.gamethrones.ui.screens.home.HomeViewModel
 @Composable
 fun Navigation() {
     val navController = rememberNavController()
-    val charactersRepository = CharactersRepository()
+    val characterRemoteDataSource = CharacterRemoteDataSource()
+    val charactersRepository = CharactersRepository(remoteDataSource = characterRemoteDataSource)
+
     NavHost(
         navController = navController,
         startDestination = Home
