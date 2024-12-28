@@ -8,10 +8,7 @@ import androidx.compose.runtime.remember
 
 class DetailState @OptIn(ExperimentalMaterial3Api::class) constructor(
     val scrollBehavior: TopAppBarScrollBehavior,
-) {
-
-}
-
+)
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

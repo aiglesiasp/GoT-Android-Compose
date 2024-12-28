@@ -9,7 +9,9 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
-class HomeViewModel(private val repository: CharactersRepository) : ViewModel() {
+class HomeViewModel(
+    private val repository: CharactersRepository
+) : ViewModel() {
 
     private val _state = MutableStateFlow(UiState())
     val state: StateFlow<UiState> get() = _state.asStateFlow()

@@ -15,6 +15,7 @@ import com.ipa.dev.gamethrones.ui.screens.home.HomeViewModel
 @Composable
 fun Navigation() {
     val navController = rememberNavController()
+    val charactersRepository = CharactersRepository()
     NavHost(
         navController = navController,
         startDestination = Home
@@ -22,17 +23,16 @@ fun Navigation() {
 
         composable<Home> {
             HomeScreen(
-                vm = viewModel { HomeViewModel(CharactersRepository()) } ,
-                onClick = { character ->
-                navController.navigate(Detail(character.id))
-            })
+                vm = viewModel { HomeViewModel(repository = charactersRepository) } ,
+                onClick = { character -> navController.navigate(Detail(character.id)) }
+            )
         }
 
         composable<Detail>(
         ) { navBackStackEntry ->
             val detail = navBackStackEntry.toRoute<Detail>()
             DetailScreen(
-                vm = viewModel { DetailViewModel(detail.characterId, CharactersRepository()) },
+                vm = viewModel { DetailViewModel(id = detail.characterId, repository = charactersRepository) },
                 onBackClick = { navController.popBackStack(route = Home, inclusive = false) },
             )
         }
