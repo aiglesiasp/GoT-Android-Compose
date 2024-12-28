@@ -1,14 +1,18 @@
 package com.ipa.dev.gamethrones.data
 
-class CharactersRepository {
+import com.ipa.dev.gamethrones.data.remotedatasource.CharacterRemoteDataSource
+
+class CharactersRepository(
+    private val remoteDataSource: CharacterRemoteDataSource
+) {
 
     suspend fun getCharacters(): List<CharacterModel> {
-        val remoteCharacters = ApiClient.instance.getCharacters()
+        val remoteCharacters = remoteDataSource.getCharacters()
         return remoteCharacters.map { it.toDomainModel() }
     }
 
     suspend fun getCharacter(id: Int): CharacterModel {
-        val remoteCharacter = ApiClient.instance.getCharacter(id)
+        val remoteCharacter = remoteDataSource.getCharacter(id)
         return remoteCharacter.toDomainModel()
     }
 }
