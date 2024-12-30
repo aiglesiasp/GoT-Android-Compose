@@ -16,5 +16,5 @@ data class CharacterLocalModel (
     val title: String?,
     val image: String?,
     val imageUrl: String?,
-    val isFavorite: Boolean = false
+    val isFavorite: Boolean
 )

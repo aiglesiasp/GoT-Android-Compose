@@ -53,11 +53,12 @@ fun DetailScreen(
                 )
             },
             floatingActionButton = {
+                val favorite = state.character?.isFavorite ?: false
                 FloatingActionButton(
                     onClick = { vm.onFavoriteClick() }
                 ) {
                     Icon(
-                        imageVector = if(state.character?.isFavorite == true) Icons.Default.Favorite else Icons.Default.FavoriteBorder,
+                        imageVector = if(favorite) Icons.Default.Favorite else Icons.Default.FavoriteBorder,
                         contentDescription = ""
                     )
                 }
