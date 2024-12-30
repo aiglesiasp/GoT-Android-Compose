@@ -9,7 +9,10 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -48,6 +51,16 @@ fun DetailScreen(
                     scrollBehavior = detailState.scrollBehavior,
                     onBackClick = onBackClick
                 )
+            },
+            floatingActionButton = {
+                FloatingActionButton(
+                    onClick = { vm.onFavoriteClick() }
+                ) {
+                    Icon(
+                        imageVector = if(state.character?.isFavorite == true) Icons.Default.Favorite else Icons.Default.FavoriteBorder,
+                        contentDescription = ""
+                    )
+                }
             }
         ) { padding ->
 
@@ -122,6 +135,6 @@ private fun DetailTopBar(
 @Composable
 private fun DetailScreen_Preview() {
     DetailScreenContent(
-        character = CharacterModel(1, "Leonado Di Caprio", "The best", "Targarian", "")
+        character = CharacterModel(1, "Leonado Di Caprio", "The best", "Targarian", "", isFavorite = false)
     )
 }

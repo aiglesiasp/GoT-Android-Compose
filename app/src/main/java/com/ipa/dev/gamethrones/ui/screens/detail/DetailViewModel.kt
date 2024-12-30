@@ -31,4 +31,8 @@ class DetailViewModel(
             }
         }
     }
+
+    fun onFavoriteClick() {
+        TODO("Not yet implemented")
+    }
 }
