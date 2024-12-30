@@ -54,7 +54,8 @@ private fun CharacterLocalModel.toDomainModel(): CharacterModel {
         fullName = if (fullName.isNullOrBlank()) "" else fullName,
         title = if (title.isNullOrBlank()) "" else title,
         family = if (family.isNullOrBlank()) "" else family,
-        imageUrl = if (imageUrl.isNullOrBlank()) "" else imageUrl
+        imageUrl = if (imageUrl.isNullOrBlank()) "" else imageUrl,
+        isFavorite = isFavorite
     )
 }
 
