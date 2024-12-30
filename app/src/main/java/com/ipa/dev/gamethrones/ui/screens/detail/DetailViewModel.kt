@@ -26,8 +26,9 @@ class DetailViewModel(
     init {
         viewModelScope.launch {
             _state.value = UiState(isLoading = true)
-            _state.value = UiState(isLoading = false, character = repository.getCharacter(id))
-
+            repository.getCharacter(id).collect { character ->
+                _state.value = UiState(isLoading = false, character = character)
+            }
         }
     }
 }

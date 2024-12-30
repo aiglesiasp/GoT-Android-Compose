@@ -24,7 +24,10 @@ class HomeViewModel(
     fun onUiReady() {
         viewModelScope.launch {
             _state.value = UiState(isLoading = true)
-            _state.value = UiState(isLoading = false, characters = repository.getCharacters())
+            //Suscribimos al flow y cada vez que cambia la base de datos repintamos la vista
+            repository.characters.collect { charactersList ->
+                _state.value = UiState(isLoading = false, characters = charactersList)
+            }
         }
     }
 }
