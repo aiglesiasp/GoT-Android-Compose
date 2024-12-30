@@ -13,7 +13,7 @@ interface CharacterDAO {
     suspend fun getCharacters(): List<CharacterLocalModel>
 
     @Query("SELECT * FROM CharacterLocalModel WHERE id = :id")
-    suspend fun getCharacter(id: Int): CharacterLocalModel
+    suspend fun getCharacter(id: Int): CharacterLocalModel?
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAll(characters: List<CharacterLocalModel>)
