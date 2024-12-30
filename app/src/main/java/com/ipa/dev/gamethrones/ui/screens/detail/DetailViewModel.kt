@@ -33,6 +33,10 @@ class DetailViewModel(
     }
 
     fun onFavoriteClick() {
-        TODO("Not yet implemented")
+        state.value.character?.let { character ->
+            viewModelScope.launch {
+                repository.toogleFavorite(character)
+            }
+        }
     }
 }
