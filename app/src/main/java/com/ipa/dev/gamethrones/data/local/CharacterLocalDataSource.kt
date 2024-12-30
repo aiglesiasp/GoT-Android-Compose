@@ -3,37 +3,16 @@ package com.ipa.dev.gamethrones.data.local
 import com.ipa.dev.gamethrones.data.CharacterModel
 import com.ipa.dev.gamethrones.data.local.database.CharacterDAO
 import com.ipa.dev.gamethrones.data.local.model.CharacterLocalModel
+import kotlinx.coroutines.flow.Flow
 
 class CharacterLocalDataSource(
     private val dao: CharacterDAO
 ) {
 
-    suspend fun getCharacters(): List<CharacterModel> = dao.getCharacters().map { it.toDomainModel() }
+    val characters: Flow<List<CharacterLocalModel>> = dao.getCharacters()
 
-    suspend fun getCharacter(id: Int): CharacterModel? = dao.getCharacter(id)?.toDomainModel()
+    fun getCharacter(id: Int): Flow<CharacterLocalModel?> = dao.getCharacter(id)
 
-    suspend fun insertAll(characters: List<CharacterModel>) = dao.insertAll(characters.map { it.toLocalModel() })
+    suspend fun insertAll(characters: List<CharacterLocalModel>) = dao.insertAll(characters)
 }
 
-private fun CharacterLocalModel.toDomainModel(): CharacterModel {
-    return CharacterModel(
-        id = id,
-        fullName = if (fullName.isNullOrBlank()) "" else fullName,
-        title = if (title.isNullOrBlank()) "" else title,
-        family = if (family.isNullOrBlank()) "" else family,
-        imageUrl = if (imageUrl.isNullOrBlank()) "" else imageUrl
-    )
-}
-
-private fun CharacterModel.toLocalModel(): CharacterLocalModel {
-    return CharacterLocalModel(
-        id = id,
-        firstName = "",
-        lastName = "",
-        fullName = if (fullName.isNullOrBlank()) "" else fullName,
-        title = if (title.isNullOrBlank()) "" else title,
-        family = if (family.isNullOrBlank()) "" else family,
-        image = "",
-        imageUrl = if (imageUrl.isNullOrBlank()) "" else imageUrl
-    )
-}
