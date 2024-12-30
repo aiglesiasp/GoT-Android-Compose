@@ -27,11 +27,11 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.nestedscroll.nestedScroll
-import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
-import com.ipa.dev.gamethrones.R
 import com.ipa.dev.gamethrones.data.CharacterModel
 import com.ipa.dev.gamethrones.ui.commonViews.LoadingProgressIndicator
 import com.ipa.dev.gamethrones.ui.theme.GameThronesTheme
@@ -109,16 +109,16 @@ fun CharacterItem(
                 contentDescription = character.fullName,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .aspectRatio(1f)
-                    //.aspectRatio(2 / 3f)
-                    .clip(MaterialTheme.shapes.small)
+                    .aspectRatio(2 / 3f)
+                    .clip(MaterialTheme.shapes.large),
+                contentScale = ContentScale.Crop
             )
             if (character.isFavorite) {
                 Icon(
                     imageVector = Icons.Default.Favorite,
                     contentDescription = "",
                     modifier = Modifier.padding(8.dp).align(Alignment.TopEnd),
-                    tint = MaterialTheme.colorScheme.primary
+                    tint = Color.Red
                 )
             }
         }

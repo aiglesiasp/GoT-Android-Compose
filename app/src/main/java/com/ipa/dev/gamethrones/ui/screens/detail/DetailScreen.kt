@@ -91,7 +91,7 @@ private fun DetailScreenContent(
             contentScale = ContentScale.Crop,
             modifier = Modifier
                 .fillMaxWidth()
-                .aspectRatio(16 / 9f)
+                .aspectRatio(2/3f)
         )
         Text(
             text = character.fullName,
