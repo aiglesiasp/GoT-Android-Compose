@@ -13,18 +13,17 @@ class CharactersRepository(
 ) {
 
     val characters: Flow<List<CharacterModel>> = localDataSource.characters.transform { characterLocalModels ->
-        if (characterLocalModels.isEmpty()) {
-            val charactersRemote = remoteDataSource.getCharacters()
-            localDataSource.insertAll(charactersRemote.toLocalModel())
-        }
-        emit(characterLocalModels.toDomainModel())
+        //Cogemos los characterLocalModels si no estan vacios, si esta vacio peticion a red y guardamos en base de datos
+        val charactersLocal = characterLocalModels.takeIf { it.isNotEmpty() } ?: remoteDataSource.getCharacters().toLocalModel().also { localDataSource.insertAll(it) }
+        //Emitimos siempre valores de local
+        emit(charactersLocal.toDomainModel())
     }
 
     fun getCharacter(id: Int): Flow<CharacterModel?> = localDataSource.getCharacter(id).transform { characterLocalModel ->
-        if (characterLocalModel == null) {
-            val characterRemote = remoteDataSource.getCharacter(id)
-            localDataSource.insertAll(listOf(characterRemote.toLocalModel()))
-        }
+        //Comprobar si esta vacia para hacer peticion a RED si es necesario y guardar en base de datos
+        val characterLocal = characterLocalModel.takeIf { it != null } ?: remoteDataSource.getCharacter(id).toLocalModel().also { localDataSource.insertAll(listOf(it)) }
+
+        //Emitimos siempre valores de local
         emit(characterLocalModel?.toDomainModel())
     }
 }
