@@ -2,6 +2,7 @@ package com.ipa.dev.gamethrones.ui.screens.home
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
@@ -10,7 +11,10 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
@@ -20,11 +24,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.input.nestedscroll.nestedScroll
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
+import com.ipa.dev.gamethrones.R
 import com.ipa.dev.gamethrones.data.CharacterModel
 import com.ipa.dev.gamethrones.ui.commonViews.LoadingProgressIndicator
 import com.ipa.dev.gamethrones.ui.theme.GameThronesTheme
@@ -96,14 +103,25 @@ fun CharacterItem(
     Column(
         modifier = Modifier.clickable(onClick = onClick)
     ) {
-        AsyncImage(
-            model = character.imageUrl,
-            contentDescription = character.fullName,
-            modifier = Modifier
-                .fillMaxWidth()
-                .aspectRatio(2 / 3f)
-                .clip(MaterialTheme.shapes.small)
-        )
+        Box {
+            AsyncImage(
+                model = character.imageUrl,
+                contentDescription = character.fullName,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .aspectRatio(1f)
+                    //.aspectRatio(2 / 3f)
+                    .clip(MaterialTheme.shapes.small)
+            )
+            if (character.isFavorite) {
+                Icon(
+                    imageVector = Icons.Default.Favorite,
+                    contentDescription = "",
+                    modifier = Modifier.padding(8.dp).align(Alignment.TopEnd),
+                    tint = MaterialTheme.colorScheme.primary
+                )
+            }
+        }
         Text(
             text = character.fullName,
             style = MaterialTheme.typography.bodySmall,
