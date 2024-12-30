@@ -5,22 +5,8 @@ import com.ipa.dev.gamethrones.data.remote.api.ApiClient
 import com.ipa.dev.gamethrones.data.remote.model.CharacterRemoteResult
 
 class CharacterRemoteDataSource {
-    suspend fun getCharacters(): List<CharacterModel> {
-        val remoteCharacters = ApiClient.instance.getCharacters()
-        return remoteCharacters.map { it.toDomainModel() } }
+    suspend fun getCharacters(): List<CharacterRemoteResult> = ApiClient.instance.getCharacters()
 
-    suspend fun getCharacter(id: Int): CharacterModel {
-        val remoteCharacters =  ApiClient.instance.getCharacter(id)
-        return remoteCharacters.toDomainModel()
-    }
+    suspend fun getCharacter(id: Int): CharacterRemoteResult = ApiClient.instance.getCharacter(id)
 }
 
-private fun CharacterRemoteResult.toDomainModel(): CharacterModel {
-    return CharacterModel(
-        id = id,
-        fullName = if (fullName.isNullOrBlank()) "" else fullName,
-        title = if (title.isNullOrBlank()) "" else title,
-        family = if (family.isNullOrBlank()) "" else family,
-        imageUrl = if (imageUrl.isNullOrBlank()) "" else imageUrl
-    )
-}
